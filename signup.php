@@ -1,7 +1,7 @@
 <?php
 require_once("Includes/session.php");
-$nameErr = $phoneErr = $addrErr = $emailErr = $passwordErr = $confpasswordErr = "";
-$name = $email = $password = $confpassword = $address = "";
+$nameErr =  $addrErr = $emailErr = $passwordErr = $confpasswordErr = $pincodeErr = "";
+$name = $email = $password = $confpassword = $address = $pincode =  "";
 $flag=0;
 function test_input($data) {
         $data = trim($data);
@@ -71,23 +71,50 @@ if(isset($_POST["reg_submit"])) {
         } else {
             $address = test_input($_POST["address"]);
         }
-        if (empty($_POST["contactNo"])) {
+       
+        if(empty($_POST["pincode"])){
+            $pincodeErr = "Pincode is required";
             $flag=1;
-            $contactNo = "";
-        } else {
-            $contactNo = test_input($_POST["contactNo"]);
-            if(!preg_match("/^d{10}$/", $_POST["contactNo"])){
-                $phoneErr="10 digit phone no allowed.";
-                echo $_POST['contactNo'];
+            echo $pincodeErr;
+            $pincode = "";
+        }
+        else{
+            $pincode = filter_var($_POST["pincode"], FILTER_VALIDATE_INT);
+            if ($pincode === false) {
+                $pincodeErr = "Pincode must be a valid integer.";
+                echo $pincodeErr;
+                $flag = 1;
+            } else {
+            $pincode = test_input($pincode);
+            if(!preg_match("/^\d{6}$/", $_POST["pincode"])){
+                $pincodeErr="6 digits required.";
+                echo $pincodeErr;
+                $flag=1;
+            }
+            $c=0;
+            $sqlquery = "SELECT id FROM location";
+            $res = mysqli_query($con, $sqlquery);
+            $pincode = test_input($_POST["pincode"]);
+            while($locid=mysqli_fetch_assoc($res)){
+                if((int)$locid['id']===(int)$pincode)
+                    {
+                        $c=1;
+                        break;
+                    }
+            }
+            if($c===0){
+                $pincodeErr="Enter valid pincode.";
+                echo $pincodeErr;
+                $flag=1;
             }
         }
-
+        }
         echo $flag; 
         if($flag == 0)
         {
             require_once("Includes/config.php");
-            $sql = "INSERT INTO users (`name`,`email`,`phone`,`password`,`address`)
-                    VALUES('$name','$email','$contactNo','$password','$address')";
+            $sql = "INSERT INTO users (`name`,`email`,`password`,`address`,`pincode`)
+                    VALUES('$name','$email','$password','$address','$pincode')";
                     echo $sql;
             if (!mysqli_query($con,$sql))
             {
@@ -119,18 +146,19 @@ if(isset($_POST["reg_submit"])) {
             <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password" required>
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-md-12">
-            <input type="tel" class="form-control" name="contactNo" placeholder="Contact No." required>
-        </div>
-    </div>
+
     <div class="form-group">
         <div class="col-md-12">
             <input type="address" class="form-control" name="address" placeholder="Address" required>
         </div>
     </div>
     <div class="form-group">
-        <div class="col-md-10">
+        <div class="col-md-12">
+            <input type="text" class="form-control" name="pincode" placeholder="Pincode" maxlength="6" required>
+        </div>
+    </div>
+    <div class="form-group">
+       <div class="col-md-10">
             <button name="reg_submit" class="btn btn-primary">Sign Up</button>
         </div>
     </div>
