@@ -41,6 +41,34 @@
         $result = mysqli_query($con,$query);
         return $result;
     }
+    function retrieve_lineman_info($id,$offset, $rowsperpage){
+        global $con;
+        $query  = "SELECT lineman.lid AS id , lineman.name AS name, lineman.phone AS phone, lineman.locid AS pincode ";
+        $query .= "FROM users , location, lineman ";
+        $query .= "WHERE users.pincode=location.id AND users.id={$id} AND location.id=lineman.locid ";
+        $query .= "ORDER BY lineman.lid "; 
+        $query .= "LIMIT {$offset}, {$rowsperpage} ";
+        $result = mysqli_query($con,$query);
+        if (!$result)   
+        {
+            die('Error: ' . mysqli_error($con));
+        }  
+        return $result;
+    }
+    function retrieve_powercut_info($id,$offset, $rowsperpage){
+        global $con;
+        $query  = "SELECT powercut.pid AS id , powercut.cause AS cause, powercut.time1 AS time1,powercut.time2 AS time2, powercut.date AS date,powercut.locid AS pincode ";
+        $query .= "FROM users , location, powercut ";
+        $query .= "WHERE users.pincode=location.id AND users.id={$id} AND location.id=powercut.locid ";
+        $query .= "ORDER BY powercut.pid "; 
+        $query .= "LIMIT {$offset}, {$rowsperpage} ";
+        $result = mysqli_query($con,$query);
+        if (!$result)   
+        {
+            die('Error: ' . mysqli_error($con));
+        }  
+        return $result;
+    }
 
     function retrieve_user_details($id) {
         global $con;
