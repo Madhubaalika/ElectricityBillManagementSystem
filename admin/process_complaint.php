@@ -13,5 +13,5 @@
              }
         }
     }
-    header("Location:complaint.php");
+    header("Location:complaints.php");
  ?>

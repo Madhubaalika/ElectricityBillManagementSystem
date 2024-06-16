@@ -14,7 +14,6 @@
 
         <?php 
             require_once("nav_bar.php");
-            require_once("side_bar.php");
         ?>
         <div id="page-content-wrapper">
 
@@ -58,12 +57,12 @@
                                             ?>
                                                 <tr>
                                                     <td><?php echo $row['bid']?></td>
-                                                    <td height="50"><?php echo $row['user'] ?></td>
-                                                    <td><?php echo $row['bdate'] ?></td>
+                                                    <td height="50"><?php echo $row['users'] ?></td>
+                                                    <td><?php echo $row['billdate'] ?></td>
                                                     <td><?php echo $row['units'] ?></td>
                                                     <td><?php echo $row['amount'] ?></td>
-                                                    <td><?php echo $row['ddate'] ?></td>
-                                                    <td><?php echo $row['status'] ?></td>
+                                                    <td><?php echo $row['duedate'] ?></td>
+                                                    <td><?php echo $row['billstatus'] ?></td>
                                                 </tr>
                                             <?php 
                                             }

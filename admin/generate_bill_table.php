@@ -23,7 +23,7 @@
                 <tr>
                     <form action="generate_bill.php" method="post" name="form_gen_bill" onsubmit="return checkInp()">
                     <?php
-                        $query3 = "SELECT billdate as bdate1 from bills ,users WHERE users.id=bills.userid and users.id={$row['uid']} ORDER BY bills.billid DESC ";
+                        $query3 = "SELECT billdate as bdate1 from bills ,users WHERE users.id=bills.userid and users.id={$row['userid']} ORDER BY bills.billid DESC ";
                         $result3 = mysqli_query($con,$query3);
                         $flag=0;
                         while($row2 = mysqli_fetch_assoc($result3)){
@@ -33,11 +33,11 @@
                         if($flag==0)
                         {
                      ?>
-                        <input type="hidden" name="uid" value=<?php echo $row['uid'] ?> >
-                        <input type="hidden" name="uname" value=<?php echo $row['uname'] ?> >
+                        <input type="hidden" name="uid" value=<?php echo $row['userid'] ?> >
+                        <input type="hidden" name="uname" value=<?php echo $row['username'] ?> >
                         
                         <td height="50">
-                            <?php echo $row['uname'] ?>
+                            <?php echo $row['username'] ?>
                         </td>
                         <td>                                                
                             <input class="form-control" type="tel" name="units" placeholder="ENTER UNITS">

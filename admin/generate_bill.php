@@ -21,11 +21,10 @@
     if (isset($_POST['generate_bill'])) {
         if(isset($_POST["units"]) && !empty($_POST["units"]))
         {
-            $query1 = "call unitstoamount({$units} , @x)";
+            $query1 = "call convertunitstoamount({$units} , @x)";
             $result1 = mysqli_query($con,$query1);  
 
-            $query  = " INSERT INTO bills (adminid , userid , units , amount , status , billdate , duedate )";
-            $query .= " VALUES ( {$aid} , {$uid} , {$units} , @x , 'PENDING' , '{$bdate}' , '{$ddate}' )";
+            $query  = "call Create_Bill({$aid},{$uid},{$units},@x,'PENDING',curdate(),adddate(curdate(),INTERVAL 30 DAY )) ";
             $result2 = mysqli_query($con,$query);  
             if (!mysqli_query($con,$query1))
             {
@@ -33,7 +32,7 @@
             }
            
 
-            $query2 = "SELECT id , amount FROM bills WHERE adminid={$aid} AND userid={$uid} AND units={$units} ";
+            $query2 = "SELECT billid , amount FROM bills WHERE adminid={$aid} AND userid={$uid} AND units={$units} ";
             $query2 .= "AND status='PENDING'  AND billdate='{$bdate}' AND duedate='{$ddate}' ";
 
             $result3 =mysqli_query($con,$query2);

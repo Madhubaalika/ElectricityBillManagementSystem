@@ -14,7 +14,6 @@
     
         <?php 
             require_once("nav_bar.php");
-            require_once("side_bar.php");
         ?>
         <div id="page-content-wrapper">
 
@@ -34,15 +33,15 @@
                 ?>
                 <div class="row">
                     <div class="col-lg-3 col-xs-6">
-                        <div class="panel panel-bolt">
+                        <div class="panel panel-bolt" style="background-color:black">
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <i class="fa fa-warning fa-3x"></i>
+                                        <i class="fa fa-warning fa-3x" style="color:white"></i>
                                     </div>
                                     <div class="col-md-9 text-right">
-                                        <div class="huge"><b></b><?php echo $row1[0] ?></div>
-                                        <div>Late Users</div>
+                                        <div class="huge" style="color:white"><b></b><?php echo $row1[0] ?></div>
+                                        <div style="color:white">Late Users</div>
                                     </div>
                                 </div>
                             </div>
@@ -57,15 +56,15 @@
                     </div>
 
                     <div class="col-lg-3 col-xs-6">
-                        <div class="panel panel-bolt2">
+                        <div class="panel panel-bolt2" style="background-color:black">
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <i class="fa fa-users fa-3x"></i>
+                                        <i class="fa fa-users fa-3x" style="color:white"></i>
                                     </div>
                                     <div class="col-md-9 text-right">
-                                        <div class="huge"><b></b><?php echo $row2[0] ?></div>
-                                        <div>User Defaulting</div>
+                                        <div class="huge" style="color:white"><b></b><?php echo $row2[0] ?></div>
+                                        <div style="color:white">User Defaulting</div>
                                     </div>
                                 </div>
                             </div>
@@ -80,15 +79,15 @@
                     </div> 
 
                     <div class="col-lg-3 col-xs-6">
-                        <div class="panel panel-bolt2">
+                        <div class="panel panel-bolt2" style="background-color:black">
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <i class="fa fa-spinner fa-3x"></i>
+                                        <i class="fa fa-spinner fa-3x" style="color:white"></i>
                                     </div>
                                     <div class="col-md-9 text-right">
-                                        <div class="huge"><b></b><?php include('pendingcount.php'); ?></div>
-                                        <div>Total Pending Bills</div>
+                                        <div class="huge" style="color:white"><b></b><?php include('pendingcount.php'); ?></div>
+                                        <div style="color:white">Total Pending Bills</div>
                                     </div>
                                 </div>
                             </div>
@@ -102,13 +101,13 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-xs-6">
-                        <div class="panel panel-bolt2">
+                        <div class="panel panel-bolt2" style="background-color:black">
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <i class="fa fa-dollar fa-3x"></i>
+                                        <span style="font-size:2em; color:white">₹</span>
                                     </div>
-                                    <div class="col-md-9 text-right">
+                                    <div class="col-md-9 text-right" style="color:white">
                                         <div class="huge"><b></b><?php include('billamtcount.php'); ?></div>
                                         <div>Total Transaction Amount</div>
                                     </div>
@@ -117,7 +116,7 @@
                             <a href="#" data-toggle="modal" data-target="#defaulting00">
                                 <div class="panel-footer">
                                     <span class="pull-left"><b>BILLS AMOUNT</b></span>
-                                    <span class="pull-right"><i class="fa fa-dollar fa-2x"></i></span>
+                                    <span class="pull-right"><span style="font-size:1.5em; color:mildblue">₹</span></span>
                                     <div class="clearfix"></div>
                                 </div>
                             </a>
@@ -131,15 +130,14 @@
                         $row2 = mysqli_fetch_row($result2);
                         $row3 = mysqli_fetch_row($result3);
                      ?>
-                     <div class="col-lg-3 col-xs-6"></div>
                     <div class="col-lg-3 col-xs-6">
-                        <div class="panel panel-bolt">
+                        <div class="panel panel-bolt" style="background-color:black">
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <i class="fa fa-file fa-3x"></i>
+                                        <i class="fa fa-file fa-3x" style="color:white"></i>
                                     </div>
-                                    <div class="col-md-9 text-right">
+                                    <div class="col-md-9 text-right" style="color:white">
                                         <div class="huge"><b></b><?php echo $row2[0]; ?></div>
                                         <div>Generated Bills</div>
                                     </div>
@@ -149,14 +147,14 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-xs-6">
-                        <div class="panel panel-bolt">
+                        <div class="panel panel-bolt" style="background-color:black">
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <i class="fa fa-bullhorn fa-3x"></i>
+                                        <i class="fa fa-bullhorn fa-3x" style="color:white"></i>
                                     </div>
-                                    <div class="col-md-9 text-right">
-                                        <div class="huge"><b></b><?php echo $row3[0]; ?></div>
+                                    <div class="col-md-9 text-right" style="color:white">
+                                        <div class="huge" ><b></b><?php echo $row3[0]; ?></div>
                                         <div>Unprocessed Complaints</div>
                                     </div>
                                 </div>
@@ -164,7 +162,6 @@
                             
                         </div>
                     </div>
-                    <div class="col-lg-3 col-xs-6"></div>
                 </div>
                                 <div class="modal fade" id="late" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-sm">

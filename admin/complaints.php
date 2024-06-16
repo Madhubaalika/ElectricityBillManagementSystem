@@ -13,7 +13,6 @@
 
         <?php 
             require_once("nav_bar.php");
-            require_once("side_bar.php");
         ?>
 
         <div id="page-content-wrapper">
@@ -45,7 +44,7 @@
                                     <tbody>
                                         <?php 
                                             $id=$_SESSION['aid'];
-                                            $query1 = "SELECT COUNT(complaint.id) FROM users , complaint  ";
+                                            $query1 = "SELECT COUNT(complaint.id) FROM users,complaint  ";
                                             $query1.= " WHERE complaint.userid=users.id AND status='NOT PROCESSED' AND complaint.adminid={$id}";
                                             $result1 = mysqli_query($con,$query1);
                                             $row1 = mysqli_fetch_row($result1);

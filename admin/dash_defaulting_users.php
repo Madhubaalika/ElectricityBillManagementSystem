@@ -33,5 +33,5 @@
         }
         
     }
-    header("Location:dashboards.php");
+    header("Location:dashboard.php");
 ?>

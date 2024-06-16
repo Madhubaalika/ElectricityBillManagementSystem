@@ -1,5 +1,5 @@
 <?php 
-    require_once('head_html.php'); 
+    require_once('head.php'); 
     require_once('../Includes/config.php'); 
     require_once('../Includes/session.php'); 
     require_once('../Includes/admin.php');
@@ -14,7 +14,6 @@
     
         <?php 
             require_once("nav_bar.php");
-            require_once("side_bar.php");
         ?>
 
         <div id="page-content-wrapper">
@@ -39,20 +38,21 @@
                                             <th>#</th>
                                             <th>Name</th>
                                             <th>Email</th>
-                                            <th>Contact</th>
                                             <th>Address</th>
+                                            <th>Total Units</th>
+                                            <th>Total Payment</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                      <?php 
-                                            $id=$_SESSION['adminid'];
+                                            $id=$_SESSION['aid'];
                                             $query1 = "SELECT COUNT(*) FROM users";
                                             $result1 = mysqli_query($con,$query1);
                                             $row1 = mysqli_fetch_row($result1);
                                             $numrows = $row1[0];
                                             include("paging_1.php");
                                            
-                                            $result = retrieve_users_detail($_SESSION['adminid'],$offset, $rowsperpage);
+                                            $result = retrieve_users_details($_SESSION['aid'],$offset, $rowsperpage);
 
                                             $cnt=1;
                                             while($row = mysqli_fetch_assoc($result)){
@@ -61,8 +61,9 @@
                                                     <td height="50"><?php echo $cnt; ?></td>
                                                     <td><?php echo $row['name'] ?></td>
                                                     <td><?php echo $row['email'] ?></td>
-                                                    <td><?php echo $row['phone'] ?></td>
-                                                    <td><?php echo $row['address'] ?></td>                                                    
+                                                    <td><?php echo $row['address'] ?></td> 
+                                                    <td><?php echo $row['total_units'] ?></td> 
+                                                    <td><?php echo $row['total_amount'] ?></td>                                                    
                                                 </tr>
                                             <?php $cnt++; } ?>
                                     </tbody>
