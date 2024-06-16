@@ -51,21 +51,17 @@ if(isset($_POST['login_submit'])) {
             </div>
         </div>
     </div>
-    <div id="headerwrap">
+   < <div id="headerwrap">
         <div class="darkhearderwrap">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 signup">
-                        <h1>Electricity Bill Management System</h1>
-                    </div>
-                    <div class="col-lg-6">
+                        <h1>Electricity Bill Management System</h1> 
                         <h1>Sign Up</h1>
                         <?php include("signup.php"); ?>
-                    </div>
                 </div>
             </div>  
             </div>
-    </div>
+    </div> 
     <?php 
     require_once("footer.php");
     ?>
